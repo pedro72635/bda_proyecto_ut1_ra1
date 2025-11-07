@@ -16,7 +16,7 @@ def main():
     steps = [
         ("Ingesta de datos (RAW + cuarentena)", "project/ingest/ingest_data.py"),
         ("Limpieza y creación del parquet (CLEAN)", "project/transform/transform_data.py"),
-        ("Generación del reporte Markdown", "project/output/reporte.md.py"),
+        ("Generación del reporte Markdown", "project/output/reporte_md.py"),
     ]
 
     for desc, script in steps:
