@@ -47,7 +47,7 @@ def generar_reporte():
         .head(5)
     )
 
-    # --- 4️⃣ Crear reporte Markdown ---
+    # --- Crear reporte Markdown ---
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     reporte_path = output_dir / "reporte.md"
 
