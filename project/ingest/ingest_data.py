@@ -34,7 +34,7 @@ def ingest_data():
     base_dir = Path(__file__).resolve().parent.parent
     drops_dir = base_dir / "data" / "drops"
     quarantine_dir = base_dir / "data" / "quarantine"
-    raw_db = base_dir / "data" / "ventas.db"
+    raw_db = base_dir / "data" / "database" / "ventas.db"
 
     quarantine_dir.mkdir(parents=True, exist_ok=True)
 

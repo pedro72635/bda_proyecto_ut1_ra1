@@ -14,7 +14,7 @@ def transformar_datos():
     clean_dir.mkdir(parents=True, exist_ok=True)
     
     # Conectar a la base de datos SQLite y leer la tabla ventas_raw
-    db_path = data_dir / "ventas.db"
+    db_path = data_dir / "database" / "ventas.db" 
     conn = sqlite3.connect(db_path)
 
     # Leer datos de la tabla ventas_raw en un DataFrame 

@@ -23,7 +23,6 @@ data/drops/
 data/quarantine/
 data/clean/
 data/output/
-output/
 *.csv
 *.parquet
 *.db
