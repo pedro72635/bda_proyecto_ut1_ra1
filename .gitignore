@@ -24,6 +24,13 @@ data/quarantine/
 data/clean/
 data/output/
 output/
+*.csv
+*.parquet
+*.db
+*.sqlite
+*.sqlite3
+*.xlsx
+*.md
 
 # Archivos del sistema
 .DS_Store
