@@ -1,0 +1,37 @@
+# Archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Bases de datos locales
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos de datos generados
+data/drops/
+data/quarantine/
+data/clean/
+data/output/
+output/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración del IDE
+.vscode/
+.idea/
+
+# Archivos de Jupyter (si los hubiera)
+*.ipynb_checkpoints/

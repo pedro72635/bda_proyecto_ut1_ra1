@@ -1,0 +1,9 @@
+fecha,id_cliente,id_producto,unidades,precio_unitario,_batch_id,_source_file,_ingest_ts,causa_error
+2025-11-01,1810,,6,,2025-11-01,E:\PROYECTOS\Nueva carpeta\BDA PROYECTO\BDA_Proyecto_UT1_RA1\project\data\drops\2025-11-01\ventas.csv,2025-11-07T20:11:09.217798,Precio inválido; Producto inválido; 
+2025-11-01,1063,,3,,2025-11-01,E:\PROYECTOS\Nueva carpeta\BDA PROYECTO\BDA_Proyecto_UT1_RA1\project\data\drops\2025-11-01\ventas.csv,2025-11-07T20:11:09.217798,Precio inválido; Producto inválido; 
+2025-11-01,1569,19.0,-5,36.35,2025-11-01,E:\PROYECTOS\Nueva carpeta\BDA PROYECTO\BDA_Proyecto_UT1_RA1\project\data\drops\2025-11-01\ventas.csv,2025-11-07T20:11:09.217798,Unidades inválidas; 
+2025-11-01,1383,26.0,0,50.02,2025-11-01,E:\PROYECTOS\Nueva carpeta\BDA PROYECTO\BDA_Proyecto_UT1_RA1\project\data\drops\2025-11-01\ventas.csv,2025-11-07T20:11:09.217798,Unidades inválidas; 
+2025-11-01,99999,46.0,1,75.32,2025-11-01,E:\PROYECTOS\Nueva carpeta\BDA PROYECTO\BDA_Proyecto_UT1_RA1\project\data\drops\2025-11-01\ventas.csv,2025-11-07T20:11:09.217798,
+2025-11-01,-1,39.0,1,12.78,2025-11-01,E:\PROYECTOS\Nueva carpeta\BDA PROYECTO\BDA_Proyecto_UT1_RA1\project\data\drops\2025-11-01\ventas.csv,2025-11-07T20:11:09.217798,Cliente inválido; 
+2025-11-01,1818,35.0,3,-83.37,2025-11-01,E:\PROYECTOS\Nueva carpeta\BDA PROYECTO\BDA_Proyecto_UT1_RA1\project\data\drops\2025-11-01\ventas.csv,2025-11-07T20:11:09.217798,Precio inválido; 
+2025-11-01,1033,14.0,4,-54.21,2025-11-01,E:\PROYECTOS\Nueva carpeta\BDA PROYECTO\BDA_Proyecto_UT1_RA1\project\data\drops\2025-11-01\ventas.csv,2025-11-07T20:11:09.217798,Precio inválido; 
