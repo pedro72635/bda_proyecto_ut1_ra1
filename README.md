@@ -17,9 +17,9 @@ project/
 ├── ingest/
 │   ├── get_data.py         # Descarga/genera datos de ejemplo
 │   ├── ingest_data.py      # Ingesta CSVs → capa RAW
-│   ├── run.py              # Orquestador del pipeline completo
+│   ├── run.py              # Pipeline completo
 ├── transform/
-│   ├── transform_data.py            # Limpieza y generación del parquet (capa CLEAN)
+│   ├── transform_data.py   # Limpieza y generación del parquet (capa CLEAN)
 ├── output/
 │   └── report_md.py        # Genera el reporte Markdown final
 ├── data/
