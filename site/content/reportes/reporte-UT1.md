@@ -33,3 +33,4 @@ Ingresos totales 69.50 €; producto líder: P10.
 - Reponer producto líder según demanda.
 - Revisar filas en cuarentena (rangos/tipos).
 - Valorar particionado por fecha para crecer.
+v
