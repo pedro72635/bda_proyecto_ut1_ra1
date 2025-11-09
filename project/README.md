@@ -12,6 +12,6 @@
 ```bash
 pip install -r requirements.txt
 python sql/init_db.py
-python ingest/get_data.py      # opcional (genera un CSV de ejemplo)
+python ingest/get_data.py      # genera los csv para el programa
 python ingest/run.py           # ejecuta todo: parquet + sqlite + reporte.md
 ```
