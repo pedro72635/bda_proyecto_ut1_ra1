@@ -17,6 +17,17 @@
 
 ## 📎 Apéndice (evidencias)
 - Capturas de pantalla del sistema de integración continua en `Actions` mostrando builds y ejecuciones exitosas.
-- Fragmentos de logs donde se observan errores detectados y solucionados (por ejemplo, entradas en quarantine por id_cliente nulo, luego corregidas en ingesta y transformación).
+- Ejecución exitosa
+<img width="1114" height="780" alt="image" src="https://github.com/user-attachments/assets/a1f7369a-663b-47d3-9996-0614b0746035" />
 
----
+- Datos en cuarentena
+<img width="1418" height="551" alt="image" src="https://github.com/user-attachments/assets/0aa17484-f3af-48c5-bce8-f587081f7653" />
+
+- Reporte 
+<img width="651" height="913" alt="image" src="https://github.com/user-attachments/assets/98c654aa-8909-450e-ac4d-22e7c72b6a20" />
+
+
+- Fragmentos de logs donde se observan errores detectados y solucionados (por ejemplo, entradas en quarantine por id_cliente nulo, luego corregidas en ingesta y transformación).
+  
+- Error al no inicializar la base de datos SQL primero
+<img width="1046" height="228" alt="image" src="https://github.com/user-attachments/assets/54a29133-fdb6-4fa7-9166-331961cc1424" />
