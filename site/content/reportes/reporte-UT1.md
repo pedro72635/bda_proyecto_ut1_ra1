@@ -1,36 +1,83 @@
-# Reporte UT1 · Ventas
-**Periodo:** 2025-01-03 a 2025-01-05 · **Fuente:** clean_ventas (Parquet) · **Generado:** 2025-10-23T10:33:01.765159+00:00
+# 📊 Reporte de Ventas - Retail Analytics
 
-## 1. Titular
-Ingresos totales 69.50 €; producto líder: P10.
+**Última actualización:** 2025-11-09 16:42:34
 
-## 2. KPIs
-- **Ingresos netos:** 69.50 €
-- **Ticket medio:** 17.38 €
-- **Transacciones:** 4
+## 🧾 Contexto
+- Fuente: `ventas_clean.parquet` + `ventas_quarantine` (SQLite)
+- Periodo analizado: últimos 30 días
+- Frecuencia de ingestión: diaria
+- Los datos son generados dinámicamente durante la ejecución del pipeline.
 
-## 3. Top productos
-| id_producto   |   importe | pct   |
-|:--------------|----------:|:------|
-| P10           |      37.5 | 54%   |
-| P20           |      32   | 46%   |
+## 🔑 Indicadores Clave (KPIs)
+| KPI | Definición | Valor |
+|------|-------------|--------|
+| Ingresos Totales | Suma de `importe` en los últimos 30 días | €2,182,002.26 |
+| Ticket Medio | Ingresos / Nº Transacciones | €379.21 |
+| Transacciones | Nº de registros válidos | 5,754 |
+| Producto Líder | ID con mayor ingreso | 15 (€59,673.65) |
 
-## 4. Resumen por día
-| fecha      |   importe_total |   transacciones |
-|:-----------|----------------:|----------------:|
-| 2025-01-03 |            25   |               1 |
-| 2025-01-04 |            36.5 |               2 |
-| 2025-01-05 |             8   |               1 |
+## ⚙️ Calidad de Datos
+- Total registros inválidos: 238
+- Porcentaje inválidos: 3.97%
 
-## 5. Calidad y cobertura
-- Filas bronce: 6 · Plata: 4 · Cuarentena: 2
+### Principales causas de error
+| Causa                                                   |   Registros |
+|:--------------------------------------------------------|------------:|
+| Precio inválido;                                        |          60 |
+| Unidades inválidas;                                     |          59 |
+| Precio inválido; Producto inválido;                     |          58 |
+| Cliente inválido;                                       |          36 |
+|                                                         |          23 |
+| Unidades inválidas; Precio inválido; Producto inválido; |           1 |
+| Cliente inválido; Precio inválido; Producto inválido;   |           1 |
 
-## 6. Persistencia
-- Parquet: D:\Proyectos\work\ESP-IA_BA-25-26\Proyecto_UT1_RA1_BA\project\output\parquet\clean_ventas.parquet
-- SQLite : D:\Proyectos\work\ESP-IA_BA-25-26\Proyecto_UT1_RA1_BA\project\output\ut1.db (tablas: raw_ventas, clean_ventas; vista: ventas_diarias)
+## 📅 Ingresos diarios (últimos 30 días)
 
-## 7. Conclusiones
-- Reponer producto líder según demanda.
-- Revisar filas en cuarentena (rangos/tipos).
-- Valorar particionado por fecha para crecer.
-v
+| fecha               |   importe |
+|:--------------------|----------:|
+| 2025-11-09 00:00:00 |   72310.3 |
+| 2025-11-08 00:00:00 |   77086.1 |
+| 2025-11-07 00:00:00 |   71653.7 |
+| 2025-11-06 00:00:00 |   74728.9 |
+| 2025-11-05 00:00:00 |   72961.2 |
+| 2025-11-04 00:00:00 |   79051.5 |
+| 2025-11-03 00:00:00 |   71698.1 |
+| 2025-11-02 00:00:00 |   67262.8 |
+| 2025-11-01 00:00:00 |   69804.9 |
+| 2025-10-31 00:00:00 |   66774.7 |
+| 2025-10-30 00:00:00 |   75527.5 |
+| 2025-10-29 00:00:00 |   72527.9 |
+| 2025-10-28 00:00:00 |   73969.1 |
+| 2025-10-27 00:00:00 |   80788.1 |
+| 2025-10-26 00:00:00 |   72828.9 |
+| 2025-10-25 00:00:00 |   73730.4 |
+| 2025-10-24 00:00:00 |   74261.2 |
+| 2025-10-23 00:00:00 |   69908.9 |
+| 2025-10-22 00:00:00 |   69882.8 |
+| 2025-10-21 00:00:00 |   69197.7 |
+| 2025-10-20 00:00:00 |   70000.8 |
+| 2025-10-19 00:00:00 |   78053.8 |
+| 2025-10-18 00:00:00 |   69629.6 |
+| 2025-10-17 00:00:00 |   69039.3 |
+| 2025-10-16 00:00:00 |   66544.3 |
+| 2025-10-15 00:00:00 |   71971   |
+| 2025-10-14 00:00:00 |   73794.1 |
+| 2025-10-13 00:00:00 |   77769.8 |
+| 2025-10-12 00:00:00 |   73033   |
+| 2025-10-11 00:00:00 |   76211.9 |
+
+## 🏆 Top 5 productos por ingresos
+
+|   id_producto |   importe |
+|--------------:|----------:|
+|            15 |   59673.7 |
+|            34 |   53304.5 |
+|            37 |   53231.3 |
+|            32 |   53168.6 |
+|             5 |   52093.4 |
+
+## 🧩 Conclusiones
+- El pipeline procesó correctamente los datos generados del último mes.
+- Se dispone de un control completo de trazabilidad y calidad de datos.
+- Los registros inválidos son trazados en la tabla `ventas_quarantine` con su causa.
+- El producto líder mantiene un volumen destacado de ingresos.
