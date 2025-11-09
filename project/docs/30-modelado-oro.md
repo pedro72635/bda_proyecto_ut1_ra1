@@ -1,9 +1,3 @@
----
-title: "Definición de métricas y tablas oro"
-owner: "equipo-alumno"
-periodicidad: "diaria"
-version: "1.0.0"
----
 
 # 🏅 Modelo de negocio (capa oro)
 
