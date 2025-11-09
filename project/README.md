@@ -11,6 +11,7 @@
 ## Comandos
 ```bash
 pip install -r requirements.txt
+python sql/init_db.py
 python ingest/get_data.py      # opcional (genera un CSV de ejemplo)
 python ingest/run.py           # ejecuta todo: parquet + sqlite + reporte.md
 ```
