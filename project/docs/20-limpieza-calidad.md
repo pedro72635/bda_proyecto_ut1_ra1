@@ -64,8 +64,6 @@
 ---
 
 ## ⚠️ Riesgos y buenas prácticas
-
-- No usar `_batch_id` o definir mal la clave natural puede causar duplicados al reingestar.
 - La política de “último gana” exige tener `_ingest_ts` correctamente seteado siempre.
 - El modo streaming **no es recomendable** aquí, pues la fuente es diaria/batch.
-- Todos los rechazos se conservan auditables, facilitando debugging y mejora continua.
+
