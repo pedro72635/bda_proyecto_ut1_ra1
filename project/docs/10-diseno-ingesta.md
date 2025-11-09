@@ -43,8 +43,8 @@ Cada ejecución del pipeline procesa los nuevos lotes de datos, aplicando contro
   - `_source_file` → ruta del archivo original
   - `_batch_id` → identificador único del lote
 - **Cuarentena (DLQ):**
-  - Ruta: `project/data/quarantine/quarantine_<batch_id>.csv`
-  - Motivos: datos inválidos (tipos incorrectos, valores fuera de rango o nulos)
+ Los registros inválidos no se descartan:  
+ se almacenan en la tabla **`ventas_quarantine`** con la causa del error y metadatos del lote.
 
 ---
 
