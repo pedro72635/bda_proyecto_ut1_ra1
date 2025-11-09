@@ -1,43 +1,176 @@
-# Proyecto_UT1_RA1_BA · Solución de ingestión, almacenamiento y reporte (UT1 · RA1)
+# 🧩 BDA_Proyecto_UT1_RA1 · Pipeline de Ingesta, Limpieza y Reporte
 
-Este repositorio contiene:
-- **project/**: código reproducible (ingesta → clean → oro → reporte Markdown).
-- **site/**: web pública con **Quartz 4** (GitHub Pages). El reporte UT1 se publica en `site/content/reportes/`.
+Este repositorio implementa un **pipeline ETL completo** (Extract → Transform → Load → Report) que permite:
+- Ingestar datos desde múltiples archivos CSV.
+- Limpiar y validar registros.
+- Almacenar los datos en una base SQLite local.
+- Generar un **reporte automático en formato Markdown** con KPIs de negocio.
 
-## Ejecución rápida
-```bash
-# 1) Dependencias (elige uno)
-python -m venv .venv
-.venv\Scripts\activate  # (o source .venv/bin/activate)
-pip install -r project/requirements.txt
-# o: conda env create -f project/environment.yml && conda activate ut1
+---
 
-# 2) (Opcional) Generar datos de ejemplo
-python project/ingest/get_data.py
+## 📁 Estructura principal del proyecto
 
-# 3) Pipeline fin-a-fin (ingesta→clean→oro→reporte.md)
-python project/ingest/run.py
-
-# 4) Copiar el reporte a la web Quartz
-python project/tools/copy_report_to_site.py
-
-# 5) (Opcional) Previsualizar la web en local
-cd site
-npx quartz build --serve   # abre http://localhost:8080
+```
+project/
+├── sql/
+│   ├── init_db.py          # Inicializa la base de datos SQLite
+├── ingest/
+│   ├── get_data.py         # Descarga/genera datos de ejemplo
+│   ├── ingest_data.py      # Ingesta CSVs → capa RAW
+│   ├── run.py              # Orquestador del pipeline completo
+├── transform/
+│   ├── transform_data.py            # Limpieza y generación del parquet (capa CLEAN)
+├── output/
+│   └── report_md.py        # Genera el reporte Markdown final
+├── data/
+│   ├── raw/                # Datos sin procesar (ingesta)
+│   ├── clean/              # Datos limpios (parquet)
+│   └── quarantine/         # Registros inválidos
+└── requirements.txt
 ```
 
-## Publicación web (GitHub Pages)
-- En **Settings → Pages**, selecciona **Source = GitHub Actions**.
-- El workflow `./.github/workflows/deploy-pages.yml` compila `site/` y despliega.
+---
 
-## Flujo de datos
-Bronce (`raw`) → Plata (`clean`) → Oro (`analytics`).  
-Idempotencia por `batch_id` (batch) o `event_id` (stream).  
-Deduplicación “último gana” por `_ingest_ts`.  
-Reporte Markdown: `project/output/reporte.md` → `site/content/reportes/reporte-UT1.md`.
-# BDA_Proyecto_UT1_RA1
+## ⚙️ Requisitos
 
+- Python **3.10 o superior**
+- Paquetes indicados en `requirements.txt`
 
-"# bda_proyecto_ut1_ra1" 
-"# bda_proyecto_ut1_ra1" 
-"# bda_proyecto_ut1_ra1" 
+Instalación rápida:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate   # (en Windows)
+# o: source .venv/bin/activate   (en Linux/Mac)
+
+pip install -r project/requirements.txt
+```
+
+---
+
+## 🚀 Ejecución paso a paso
+
+1️⃣ **Inicializar la base de datos**
+```bash
+python project/ingest/init_db.py
+```
+Crea la base `ventas.db` y las tablas necesarias en la capa **RAW**.
+
+---
+
+2️⃣ **Generar datos de ejemplo**
+```bash
+python project/ingest/get_data.py
+```
+Descarga o genera los archivos CSV dentro de `project/data/drops/`.
+
+---
+
+3️⃣ **Ejecutar el pipeline completo**
+```bash
+python project/ingest/run.py
+```
+Ejecuta automáticamente las siguientes etapas:
+- Ingesta (`ingest_data.py`)
+- Limpieza (`transform_data.py`)
+- Reporte (`report_md.py`)
+
+El proceso muestra mensajes como:
+```
+Ingesta completada correctamente.
+Limpieza y creación del parquet (CLEAN) completado correctamente.
+Reporte generado correctamente en: project/output/reporte.md
+```
+
+---
+
+## 📊 Salida generada
+
+| Archivo | Descripción |
+|----------|--------------|
+| `project/data/clean/ventas_clean.parquet` | Datos limpios y validados |
+| `project/output/reporte.md` | Reporte final con KPIs y tablas resumen |
+| `project/data/quarantine/*.csv` | Registros rechazados por validación |
+
+---
+
+## 🔁 Idempotencia y control de lotes
+
+Cada ejecución procesa los archivos según su **batch_id (YYYY-MM-DD)**.  
+Si se vuelve a ejecutar el pipeline sobre el mismo lote, los registros previos se eliminan antes de insertar los nuevos:
+
+```python
+conn.execute("DELETE FROM ventas_raw WHERE _batch_id = ?", (batch_id,))
+```
+
+Esto asegura que el proceso sea **idempotente y reproducible**.
+
+---
+
+## 📈 KPIs incluidos en el reporte
+
+El archivo `report_md.py` calcula y muestra automáticamente:
+- **Ingresos totales**
+- **Número de transacciones**
+- **Ticket medio**
+- **Producto líder por ventas**
+- **Top 5 productos por ingresos**
+- **Ingresos diarios (últimos 30 días)**
+
+---
+
+## 🧹 Limpieza y buenas prácticas
+
+- Se validan y separan registros inválidos (`quarantine`).
+- Se utiliza `Pathlib` para rutas portables.
+- Se implementa control de errores con mensajes descriptivos.
+- Se garantiza reproducibilidad total del pipeline.
+
+---
+
+## 🧾 Ejemplo de ejecución
+
+```
+> python project/ingest/run.py
+
+------------------------------------------------------------
+ Ingestando archivo: project/data/raw/2025-11-06/ventas.csv
+------------------------------------------------------------
+Filas válidas: 5753 | Filas inválidas: 12
+
+ Limpieza y creación del parquet (CLEAN)
+------------------------------------------------------------
+Datos limpios guardados en: project/data/clean/ventas_clean.parquet
+Filas finales: 5753
+
+ Generación del reporte Markdown
+------------------------------------------------------------
+Reporte generado correctamente en: project/output/reporte.md
+```
+
+---
+
+## 📂 Resultados esperados
+
+```
+project/
+└── output/
+    └── reporte.md
+```
+
+Ejemplo de salida en `reporte.md`:
+
+```markdown
+# 📊 Reporte de Ventas Diarias - Retail Mini
+
+**Última actualización:** 2025-11-07 12:45:32
+
+## 🔑 KPIs
+- Ingresos totales: €256,304.50
+- Ticket medio: €44.57
+- Transacciones: 5,753
+- Producto líder: ID 105 (€8,234.00)
+```
+
+---
+
