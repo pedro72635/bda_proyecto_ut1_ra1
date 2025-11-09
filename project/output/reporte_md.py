@@ -111,7 +111,6 @@ def generar_reporte():
         f.write("- Se dispone de un control completo de trazabilidad y calidad de datos.\n")
         f.write("- Los registros inválidos son trazados en la tabla `ventas_quarantine` con su causa.\n")
         f.write("- El producto líder mantiene un volumen destacado de ingresos.\n")
-        f.write("- Este pipeline puede ampliarse fácilmente con segmentación de clientes o categorías.\n")
 
     print(f"✅ Reporte generado correctamente en: {reporte_path}")
 
