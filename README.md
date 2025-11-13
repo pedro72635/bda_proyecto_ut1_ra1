@@ -119,15 +119,6 @@ El archivo `report_md.py` calcula y muestra automáticamente:
 
 ---
 
-## 🧹 Limpieza y buenas prácticas
-
-- Se validan y separan registros inválidos (`quarantine`).
-- Se utiliza `Pathlib` para rutas portables.
-- Se implementa control de errores con mensajes descriptivos.
-- Se garantiza reproducibilidad total del pipeline.
-
----
-
 ## 🧾 Ejemplo de ejecución
 
 ```
