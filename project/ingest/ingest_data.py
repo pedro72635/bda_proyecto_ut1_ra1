@@ -64,8 +64,9 @@ def ingest_data():
         total_validos += len(validos)
         total_invalidos += len(invalidos)
 
-        
+        # Borrar casos anterioers
         conn.execute("DELETE FROM ventas_raw WHERE _batch_id = ?", (batch_id,))
+        conn.execute("DELETE FROM ventas_quarantine WHERE _batch_id = ?", (batch_id,))
 
         # Guardar válidos en SQLite (capa RAW)
         validos.to_sql("ventas_raw", conn, if_exists="append", index=False)
